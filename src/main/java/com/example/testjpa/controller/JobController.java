@@ -3,13 +3,12 @@ package com.example.testjpa.controller;
 import com.example.testjpa.pojo.Job;
 import com.example.testjpa.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+//@CrossOrigin(value = "http://localhost:8080")
 @RestController
 public class JobController {
 
@@ -23,14 +22,15 @@ public class JobController {
     }
 
     @GetMapping("/job2/{id}")
-    public String getReferenceById(@PathVariable("id") Integer id) {
+    public Optional<Job> findById(@PathVariable("id") Integer id) {
 
-        return jobService.getReferenceById(id).toString();
+        return jobService.findById(id);
     }
 
     @PostMapping("/job2/save")
-    public String save(("id") Integer id) {
+    //insert / update
+    public Job save(@RequestBody Job job) {
 
-        return jobService.getReferenceById(id).toString();
+        return jobService.save(job);
     }
 }
