@@ -18,10 +18,7 @@ public class FileDataController {
     @PostMapping("/fileSystem")
     public ResponseEntity<?> uploadImageToFIleSystem(@RequestParam("image")MultipartFile file) throws IOException {
         String uploadImage = service.uploadImageToFileSystem(file);
-        if (file.isEmpty()){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
+            return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
     }
 
     @GetMapping("/fileSystem/{fileName}")
